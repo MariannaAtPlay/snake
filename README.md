@@ -1,6 +1,9 @@
 # snake
 p5.js snake tutorial spin-off
 
+How do I play?
+* Just open up index.html in a browser
+
 Followed along the video, with a few differences:
 * Snake wraps around the canvas;
 * Food is an object;

@@ -2,7 +2,7 @@
 p5.js snake tutorial spin-off
 
 How do I play?
-* Just open up index.html in a browser
+* Click [here](https://arturts.github.io/snake/)
 
 Followed along the video, with a few differences:
 * Snake wraps around the canvas;

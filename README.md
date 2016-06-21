@@ -5,6 +5,7 @@ How do I play?
 * Click [here](https://arturts.github.io/snake/)
 
 Followed along the video, with a few differences:
+* Game gets faster the more points you get
 * Snake wraps around the canvas;
 * Food is an object;
 * Snake eating the food works a little bit different (food and snake squares have the same size, only check for same x and y);
@@ -12,7 +13,7 @@ Followed along the video, with a few differences:
 
 TODO:
 * Scoreboard;
-* Reset everything when snake eats itself;
+* Sometimes the food appears on top of the snake.
 * Maybe a splashscreen?
 * When snake fills entire screen, player wins
 

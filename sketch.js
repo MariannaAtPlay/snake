@@ -4,16 +4,17 @@ var food;
 
 function setup() {
   createCanvas(scl * 30, scl * 30);
-  snake = new Snake();
+  snake = new Snake(1);
   food  = new Food();
-  frameRate(10);
 }
 
 function draw() {
   background(51);
 
+  frameRate(constrain(snake.level * 6, 10, 40));
   snake.eat(food);
   snake.move();
+  snake.die();
   snake.draw();
   food.draw();
 }

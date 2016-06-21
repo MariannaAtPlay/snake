@@ -1,12 +1,18 @@
-function Snake() {
-  this.x = cols()/2 * scl;
-  this.y = rows()/2 * scl;
-  this.xspeed = -1;
-  this.yspeed = 0;
-  this.tail = [];
-  this.points = 0;
+function Snake(level) {
+  this.level = level;
+
+  this.resetSnake = function() {
+    this.x = cols()/2 * scl;
+    this.y = rows()/2 * scl;
+    this.xspeed = -1;
+    this.yspeed = 0;
+    this.tail = [];
+    this.points = 0;
+    this.level = 1;
+  };
 
   this.dir = function(x, y) {
+    // do not allow snake to go backwards
     if (x != 0 && this.xspeed != x * (-1)
         || y != 0 && this.yspeed != y * (-1)) {
       this.xspeed = x;
@@ -14,12 +20,30 @@ function Snake() {
     }
   }
 
+  this.levelUp = function() {
+    this.level = floor(this.points / 10) + 1;
+    console.log("level " + this.level);
+  }
+
   this.eat = function(food) {
+    // head is on top of food?
     if (this.x === food.x() && this.y === food.y()) {
       food.eaten();
       this.points++;
       this.tail.push(createVector(this.x, this.y));
+      this.levelUp();
       console.log(this.points + " points");
+    }
+  }
+
+  this.die = function() {
+    // snake bit his own body?
+    var isDead = this.tail.some((square) => {
+      return square.x === this.x && square.y === this.y;
+    });
+
+    if (isDead) {
+      this.resetSnake();
     }
   }
 
@@ -50,12 +74,17 @@ function Snake() {
   }
 
   this.draw = function() {
+    // sets the 'brush' color
     fill(255);
+
+    // draws the head
     rect(this.x, this.y, scl, scl);
+
+    // draws the tail
     for(var i = 0; i < this.tail.length; i++) {
-      rect(this.tail[i].x,
-          this.tail[i].y,
-          scl, scl);
+      rect(this.tail[i].x, this.tail[i].y, scl, scl);
     }
   }
+
+  this.resetSnake();
 }
